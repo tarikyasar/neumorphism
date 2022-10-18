@@ -7,13 +7,13 @@
 
 import SwiftUI
 
-struct NeumorphicSurface<SurfaceShape>: View where SurfaceShape: Shape {
+public struct NeumorphicSurface<SurfaceShape>: View where SurfaceShape: Shape {
     var surfaceShape: SurfaceShape
     var isDarkModeEnabled: Bool
     var lightModeColor: Color = Color.offWhite
     var darkModeColor: Color = Color.darkEnd
     
-    var body: some View {
+    public var body: some View {
         if (isDarkModeEnabled) {
             surfaceShape
                 .fill(darkModeColor)

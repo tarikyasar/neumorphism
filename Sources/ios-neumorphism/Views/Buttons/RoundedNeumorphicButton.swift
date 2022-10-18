@@ -7,12 +7,12 @@
 
 import SwiftUI
 
-struct RoundedNeumorphicButton<Label>: View where Label: View {
+public struct RoundedNeumorphicButton<Label>: View where Label: View {
     var action: () -> Void
     var label: Label
     var isDarkModeEnabled: Bool
     
-    var body: some View {
+    public var body: some View {
         if (isDarkModeEnabled) {
             Button(action: {
                 action()
