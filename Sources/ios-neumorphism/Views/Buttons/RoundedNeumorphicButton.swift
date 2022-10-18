@@ -12,6 +12,12 @@ public struct RoundedNeumorphicButton<Label>: View where Label: View {
     var label: Label
     var isDarkModeEnabled: Bool
     
+    public init(action: @escaping () -> Void, label: Label, isDarkModeEnabled: Bool) {
+        self.action = action
+        self.label = label
+        self.isDarkModeEnabled = isDarkModeEnabled
+    }
+    
     public var body: some View {
         if (isDarkModeEnabled) {
             Button(action: {

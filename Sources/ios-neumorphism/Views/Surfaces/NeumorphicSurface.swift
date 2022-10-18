@@ -13,6 +13,18 @@ public struct NeumorphicSurface<SurfaceShape>: View where SurfaceShape: Shape {
     var lightModeColor: Color = Color.offWhite
     var darkModeColor: Color = Color.darkEnd
     
+    public init(
+        surfaceShape: SurfaceShape,
+        isDarkModeEnabled: Bool,
+        lightModeColor: Color = Color(red: 225 / 255, green: 225 / 255, blue: 235 / 255),
+        darkModeColor: Color = Color(red: 25 / 255, green: 25 / 255, blue: 30 / 255)
+    ) {
+        self.surfaceShape = surfaceShape
+        self.isDarkModeEnabled = isDarkModeEnabled
+        self.lightModeColor = lightModeColor
+        self.darkModeColor = darkModeColor
+    }
+    
     public var body: some View {
         if (isDarkModeEnabled) {
             surfaceShape

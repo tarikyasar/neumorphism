@@ -8,11 +8,11 @@
 import SwiftUI
 
 public struct CircularNeumorphicButton<Label>: View where Label: View {
-    public var action: () -> Void
-    public var label: Label
-    public var isDarkModeEnabled: Bool
+    var action: () -> Void
+    var label: Label
+    var isDarkModeEnabled: Bool
     
-    public init(_ action: @escaping () -> Void, _ label: Label, _ isDarkModeEnabled: Bool) {
+    public init(action: @escaping () -> Void, label: Label, isDarkModeEnabled: Bool) {
         self.action = action
         self.label = label
         self.isDarkModeEnabled = isDarkModeEnabled
