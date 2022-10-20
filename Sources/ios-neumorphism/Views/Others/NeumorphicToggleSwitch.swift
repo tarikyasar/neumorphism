@@ -9,33 +9,55 @@ import Foundation
 import SwiftUI
 
 public struct NeumorphicToggleSwitch: View {
-    var isOn: Binding<Bool>
+    @State var isOn: Bool
     var isDarkMode: Bool
+    var width: CGFloat
+    var height: CGFloat
+    var activatedColor: Color
     
-    public init(isOn: Binding<Bool>, isDarkMode: Bool) {
-        self.isOn = isOn
+    public init(
+        isOn: State<Bool>,
+        isDarkMode: Bool,
+        width: CGFloat = 100,
+        height: CGFloat = 40,
+        activatedColor: Color
+    ) {
+        self._isOn = isOn
         self.isDarkMode = isDarkMode
+        self.width = width
+        self.height = height
+        self.activatedColor = activatedColor
     }
     
     public var body: some View {
         ZStack {
-            if (isDarkMode) {
-                RoundedRectangle(cornerRadius: 40)
-                    .fill(Color.darkEnd)
-                    .frame(width: 60, height: 40)
-                    .shadow(color: Color.darkStart, radius: 10, x: -2, y: -2)
-                    .shadow(color: Color.darkEnd, radius: 10, x: 2, y: 2)
+            if (self.isOn) {
+                RoundedRectangle(cornerRadius: 60)
+                    .fill(activatedColor)
+                    .frame(width: width, height: height)
             } else {
-                RoundedRectangle(cornerRadius: 40)
-                    .fill(Color.offWhite)
-                    .frame(width: 60, height: 40)
-                    .shadow(color: Color.black.opacity(0.2), radius: 10, x: 4, y: 4)
-                    .shadow(color: Color.white.opacity(0.7), radius: 10, x: -4, y: -4)
+                NeumorphicPressedSurface(
+                    surfaceShape: RoundedRectangle(cornerRadius: 60),
+                    isDarkModeEnabled: isDarkMode,
+                    width: width,
+                    height: height
+                )
             }
             
-            Toggle("", isOn: isOn)
-                .frame(width: .zero, alignment: .center)
-                .padding(.trailing, 10)
+            HStack {
+                Circle()
+                    .fill(isDarkMode == true ? Color.darkStart : Color.offWhite)
+                    .shadow(radius: 4)
+                    .frame(height: height - 10)
+                    .padding(.horizontal, 5)
+                    .frame(width: width, height: height, alignment: self.isOn == true ? .trailing : .leading)
+            }
+            .frame(width: width, height: height)
+        }
+        .onTapGesture {
+            withAnimation(.easeInOut) {
+                isOn.toggle()
+            }
         }
     }
 }
