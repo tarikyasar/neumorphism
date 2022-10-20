@@ -18,7 +18,7 @@ public struct NeumorphicToggleSwitch: View {
     public init(
         isOn: State<Bool>,
         isDarkMode: Bool,
-        width: CGFloat = 100,
+        width: CGFloat = 70,
         height: CGFloat = 40,
         activatedColor: Color
     ) {
