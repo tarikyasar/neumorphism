@@ -10,9 +10,12 @@ import SwiftUI
 
 struct LightButtonStyle<S: Shape>: ButtonStyle {
     var shape: S
+    var width: CGFloat = 50
+    var height: CGFloat = 50
     
     func makeBody(configuration: Self.Configuration) -> some View {
         configuration.label
+            .frame(width: width, height: height)
             .padding(30)
             .background(
                 Group {
@@ -46,9 +49,12 @@ struct LightButtonStyle<S: Shape>: ButtonStyle {
 
 struct DarkButtonStyle<S: Shape>: ButtonStyle {
     var shape: S
+    var width: CGFloat = 50
+    var height: CGFloat = 50
     
     func makeBody(configuration: Self.Configuration) -> some View {
         configuration.label
+            .frame(width: width, height: height)
             .padding(30)
             .contentShape(shape)
             .background(
